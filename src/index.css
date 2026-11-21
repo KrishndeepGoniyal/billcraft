@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+}
+
+/* A4 Printable Document Dimensions & Rules */
+.a4-document {
+  width: 100%;
+  max-width: 794px;
+  min-height: 1123px;
+  box-sizing: border-box;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  /* Reset all parent containers of the invoice */
+  #root,
+  main,
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Only display the invoice preview container */
+  body > #root {
+    display: block !important;
+  }
+
+  body > #root > div {
+    display: block !important;
+    background: transparent !important;
+  }
+
+  body > #root > div > main {
+    display: block !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  body > #root > div > main > div {
+    display: block !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Ensure invoice container is cleanly centered and styled */
+  #invoice-printable,
+  .a4-document {
+    display: block !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 794px !important;
+    min-height: 1123px !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  .avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}

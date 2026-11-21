@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BillCraft — 100% Client-Side Invoice, Quote & Rate Calculator</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://billcraft.app/" />
+
+    <!-- Inline Script to apply saved theme immediately before React mounts to prevent white/dark flash -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme') || localStorage.getItem('billcraft_theme');
+          var theme = saved || 'dark';
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="BillCraft — 100% Client-Side Invoice, Quote & Rate Calculator" />
+    <meta name="description" content="Generate professional PDF invoices and quotations in seconds, embed UPI payment QR codes, and calculate freelance hourly rates. 100% client-side, zero server tracking, free forever." />
+    <meta name="keywords" content="invoice generator, quote maker, freelance rate calculator, client-side invoice, UPI QR invoice, PDF invoice maker, GST invoice, privacy-first invoice" />
+    <meta name="author" content="BillCraft" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://billcraft.app/" />
+    <meta property="og:title" content="BillCraft — Free Client-Side Invoice & Rate Calculator" />
+    <meta property="og:description" content="Privacy-first PDF invoice builder with instant UPI QR codes and freelance rate calculator. No signups, no servers, works 100% in your browser." />
+    <meta property="og:image" content="https://billcraft.app/og-image.png" />
+    <meta property="og:site_name" content="BillCraft" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://billcraft.app/" />
+    <meta property="twitter:title" content="BillCraft — Free Client-Side Invoice & Rate Calculator" />
+    <meta property="twitter:description" content="Privacy-first PDF invoice builder with instant UPI QR codes and freelance rate calculator. No signups, works offline." />
+    <meta property="twitter:image" content="https://billcraft.app/og-image.png" />
+
+    <!-- JSON-LD Structured Data Schema for SEO & Rich Snippets -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "BillCraft",
+        "url": "https://billcraft.app",
+        "description": "Fast, 100% client-side invoice, quotation, and freelance rate calculator for small businesses and independent contractors.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All modern browsers (Chrome, Safari, Firefox, Edge)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Instant A4 PDF Invoice & Quotation Generation",
+          "Client-Side NPCI UPI QR Code Generation",
+          "Indian GST Tax Breakdown (CGST, SGST, IGST)",
+          "Freelance Hourly and Day Rate Unit Economics Calculator",
+          "100% Offline LocalStorage Persistence with Zero Remote Servers"
+        ]
+      }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans antialiased min-h-screen selection:bg-sky-500 selection:text-white transition-colors duration-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
