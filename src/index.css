@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html,
   body {
+    overflow-x: hidden;
+    max-width: 100vw;
     @apply transition-colors duration-200;
   }
 }
@@ -32,6 +35,11 @@
   box-sizing: border-box;
 }
 
+/* Dedicated Print Architecture */
+.print-only {
+  display: none;
+}
+
 @media print {
   @page {
     size: A4 portrait;
@@ -39,70 +47,41 @@
   }
 
   html,
-  body {
-    background: #ffffff !important;
-    color: #0f172a !important;
-    overflow: visible !important;
-    height: auto !important;
-    min-height: auto !important;
+  body,
+  #root {
     margin: 0 !important;
     padding: 0 !important;
-    print-color-adjust: exact !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: #ffffff !important;
     -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  /* Reset all parent containers of the invoice */
-  #root,
-  main,
-  header,
-  footer,
   .no-print {
     display: none !important;
   }
 
-  /* Only display the invoice preview container */
-  body > #root {
+  .print-only {
     display: block !important;
-  }
-
-  body > #root > div {
-    display: block !important;
-    background: transparent !important;
-  }
-
-  body > #root > div > main {
-    display: block !important;
-    overflow: visible !important;
-    height: auto !important;
-  }
-
-  body > #root > div > main > div {
-    display: block !important;
-    overflow: visible !important;
-    height: auto !important;
-  }
-
-  /* Ensure invoice container is cleanly centered and styled */
-  #invoice-printable,
-  .a4-document {
-    display: block !important;
-    box-shadow: none !important;
-    border: none !important;
+    position: static !important;
+    width: 210mm !important;
+    min-height: 297mm !important;
     margin: 0 auto !important;
-    padding: 0 !important;
-    width: 100% !important;
-    max-width: 794px !important;
-    min-height: 1123px !important;
-    page-break-after: avoid !important;
-    page-break-inside: avoid !important;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
-    background-color: #ffffff !important;
+    background: #ffffff !important;
     color: #0f172a !important;
   }
 
-  .avoid-break {
-    page-break-inside: avoid !important;
+  .print-only tr,
+  .print-only .totals-section,
+  .print-only .qr-section {
     break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .avoid-break {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
   }
 }

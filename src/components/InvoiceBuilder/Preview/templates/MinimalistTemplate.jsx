@@ -127,7 +127,7 @@ export const MinimalistTemplate = ({ invoiceData }) => {
         </div>
 
         {/* Totals Section */}
-        <div className="mt-6 flex justify-end border-t border-slate-200 pt-4">
+        <div className="totals-section avoid-break mt-6 flex justify-end border-t border-slate-200 pt-4">
           <div className="w-72 space-y-2 text-xs">
             <div className="flex justify-between text-slate-600">
               <span>Subtotal</span>
@@ -202,7 +202,7 @@ export const MinimalistTemplate = ({ invoiceData }) => {
       </div>
 
       {/* Footer / Payment & Notes */}
-      <div className="border-t border-slate-200 pt-6 mt-8">
+      <div className="qr-section avoid-break border-t border-slate-200 pt-6 mt-8">
         <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
           <div className="flex-1 text-xs space-y-3">
             {invoiceData.notes && (

@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>BillCraft — 100% Client-Side Invoice, Quote & Rate Calculator</title>
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://billcraft.app/" />
+    <link rel="canonical" href="https://billcraft.alone262005.workers.dev/" />
 
     <!-- Inline Script to apply saved theme immediately before React mounts to prevent white/dark flash -->
     <script>
@@ -33,18 +33,18 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://billcraft.app/" />
+    <meta property="og:url" content="https://billcraft.alone262005.workers.dev/" />
     <meta property="og:title" content="BillCraft — Free Client-Side Invoice & Rate Calculator" />
     <meta property="og:description" content="Privacy-first PDF invoice builder with instant UPI QR codes and freelance rate calculator. No signups, no servers, works 100% in your browser." />
-    <meta property="og:image" content="https://billcraft.app/og-image.png" />
+    <meta property="og:image" content="https://billcraft.alone262005.workers.dev/og-image.png" />
     <meta property="og:site_name" content="BillCraft" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://billcraft.app/" />
+    <meta property="twitter:url" content="https://billcraft.alone262005.workers.dev/" />
     <meta property="twitter:title" content="BillCraft — Free Client-Side Invoice & Rate Calculator" />
     <meta property="twitter:description" content="Privacy-first PDF invoice builder with instant UPI QR codes and freelance rate calculator. No signups, works offline." />
-    <meta property="twitter:image" content="https://billcraft.app/og-image.png" />
+    <meta property="twitter:image" content="https://billcraft.alone262005.workers.dev/og-image.png" />
 
     <!-- JSON-LD Structured Data Schema for SEO & Rich Snippets -->
     <script type="application/ld+json">
@@ -52,7 +52,7 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "BillCraft",
-        "url": "https://billcraft.app",
+        "url": "https://billcraft.alone262005.workers.dev",
         "description": "Fast, 100% client-side invoice, quotation, and freelance rate calculator for small businesses and independent contractors.",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "All modern browsers (Chrome, Safari, Firefox, Edge)",
@@ -76,8 +76,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans antialiased min-h-screen selection:bg-sky-500 selection:text-white transition-colors duration-200">
-    <div id="root"></div>
+  <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans antialiased min-h-screen selection:bg-sky-500 selection:text-white transition-colors duration-200 overflow-x-hidden">
+    <div id="root" class="min-h-screen overflow-x-hidden"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

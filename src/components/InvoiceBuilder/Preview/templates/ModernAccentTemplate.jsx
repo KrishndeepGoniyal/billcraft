@@ -165,7 +165,7 @@ export const ModernAccentTemplate = ({ invoiceData }) => {
           </div>
 
           {/* Totals Section */}
-          <div className="mt-6 flex justify-end">
+          <div className="totals-section avoid-break mt-6 flex justify-end">
             <div className="w-80 space-y-2 text-xs">
               <div className="flex justify-between text-slate-600 px-2">
                 <span>Subtotal</span>
@@ -245,7 +245,7 @@ export const ModernAccentTemplate = ({ invoiceData }) => {
       </div>
 
       {/* Modern Footer with Banking & QR Code */}
-      <div className="p-8 sm:p-12 pt-0 mt-6">
+      <div className="qr-section avoid-break p-8 sm:p-12 pt-0 mt-6">
         <div className="p-5 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row justify-between items-start gap-6">
           <div className="flex-1 text-xs space-y-2">
             {invoiceData.notes && (

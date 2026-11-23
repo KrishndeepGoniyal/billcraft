@@ -16,6 +16,29 @@ export const ActionsBar = () => {
   const [isExporting, setIsExporting] = useState(false);
   const [progressMsg, setProgressMsg] = useState('');
 
+  const handlePrint = () => {
+    const originalTitle = document.title;
+    const printFilename = `${invoiceData.docType === 'quotation' ? 'Quotation' : 'Invoice'}-${
+      invoiceData.invoiceNumber || 'draft'
+    }`;
+    document.title = printFilename;
+
+    const restoreTitle = () => {
+      document.title = originalTitle;
+      window.removeEventListener('afterprint', restoreTitle);
+    };
+
+    window.addEventListener('afterprint', restoreTitle);
+    window.print();
+
+    // Fallback if afterprint doesn't fire
+    setTimeout(() => {
+      if (document.title === printFilename) {
+        document.title = originalTitle;
+      }
+    }, 2000);
+  };
+
   const handleDownloadPdf = async () => {
     try {
       setIsExporting(true);
@@ -66,7 +89,7 @@ export const ActionsBar = () => {
         {/* Print / Native PDF */}
         <button
           type="button"
-          onClick={triggerBrowserPrint}
+          onClick={handlePrint}
           className="bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white font-medium text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 border border-slate-200 dark:border-slate-700/80 transition-colors"
           title="Print or Save via Chrome/Safari/Firefox Print dialog"
           aria-label="Print invoice"
@@ -89,7 +112,7 @@ export const ActionsBar = () => {
       </div>
 
       {/* Secondary Tools */}
-      <div className="flex items-center gap-1.5">
+      <div className="flex flex-wrap items-center gap-1.5">
         {/* Duplicate */}
         <button
           type="button"

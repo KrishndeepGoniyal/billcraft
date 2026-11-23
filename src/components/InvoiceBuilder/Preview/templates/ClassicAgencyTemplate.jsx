@@ -133,7 +133,7 @@ export const ClassicAgencyTemplate = ({ invoiceData }) => {
         </div>
 
         {/* Bottom Calculations */}
-        <div className="mt-4 flex justify-end font-sans">
+        <div className="totals-section avoid-break mt-4 flex justify-end font-sans">
           <table className="w-72 border border-slate-900 border-collapse text-xs">
             <tbody>
               <tr className="border-b border-slate-200">
@@ -204,7 +204,7 @@ export const ClassicAgencyTemplate = ({ invoiceData }) => {
       </div>
 
       {/* Footer with Signature and Stamp zone */}
-      <div className="border-t-2 border-slate-900 pt-6 mt-6 font-sans">
+      <div className="qr-section avoid-break border-t-2 border-slate-900 pt-6 mt-6 font-sans">
         <div className="grid grid-cols-12 gap-6 items-end">
           <div className="col-span-7 text-xs space-y-2">
             {invoiceData.bankDetails?.accountNumber && (

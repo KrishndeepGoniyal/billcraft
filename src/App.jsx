@@ -3,6 +3,9 @@ import { ThemeProvider } from './context/ThemeContext';
 import { InvoiceProvider, useInvoice } from './context/InvoiceContext';
 import { Navbar } from './components/Navbar';
 import { InvoiceBuilder } from './components/InvoiceBuilder/InvoiceBuilder';
+import { MinimalistTemplate } from './components/InvoiceBuilder/Preview/templates/MinimalistTemplate';
+import { ModernAccentTemplate } from './components/InvoiceBuilder/Preview/templates/ModernAccentTemplate';
+import { ClassicAgencyTemplate } from './components/InvoiceBuilder/Preview/templates/ClassicAgencyTemplate';
 import { RateCalculator } from './components/RateCalculator/RateCalculator';
 import { HistoryDirectory } from './components/History/HistoryDirectory';
 import { AboutPage } from './pages/AboutPage';
@@ -54,7 +57,7 @@ const AppContent = () => {
   });
 
   const [isProKitOpen, setIsProKitOpen] = useState(false);
-  const { toast, dismissToast } = useInvoice();
+  const { toast, dismissToast, invoiceData } = useInvoice();
 
   // Sync route and title
   const handleNavigate = (view) => {
@@ -84,70 +87,86 @@ const AppContent = () => {
   }, [activeView]);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-sky-500 selection:text-white transition-colors duration-200">
-      {/* Navigation */}
-      <Navbar
-        activeView={activeView}
-        onViewChange={handleNavigate}
-        onOpenProKit={() => setIsProKitOpen(true)}
-      />
+    <>
+      {/* Interactive Application UI (Hidden during Print) */}
+      <div className="no-print min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-sky-500 selection:text-white transition-colors duration-200 overflow-x-hidden">
+        {/* Navigation */}
+        <Navbar
+          activeView={activeView}
+          onViewChange={handleNavigate}
+          onOpenProKit={() => setIsProKitOpen(true)}
+        />
 
-      {/* Main View Area */}
-      <main className="flex-1 flex flex-col">
-        {activeView === 'builder' && <InvoiceBuilder />}
+        {/* Main View Area */}
+        <main className="flex-1 flex flex-col">
+          {activeView === 'builder' && <InvoiceBuilder />}
 
-        {activeView === 'calculator' && (
-          <div className="py-6 space-y-12">
-            <RateCalculator />
-            <div className="max-w-6xl mx-auto px-4 sm:px-8">
-              <RecommendedTools />
+          {activeView === 'calculator' && (
+            <div className="py-6 space-y-12">
+              <RateCalculator />
+              <div className="max-w-6xl mx-auto px-4 sm:px-8">
+                <RecommendedTools />
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {activeView === 'history' && (
-          <div className="py-6 space-y-12">
-            <HistoryDirectory onNavigateToEditor={() => handleNavigate('builder')} />
-          </div>
-        )}
+          {activeView === 'history' && (
+            <div className="py-6 space-y-12">
+              <HistoryDirectory onNavigateToEditor={() => handleNavigate('builder')} />
+            </div>
+          )}
 
-        {activeView === 'about' && (
-          <AboutPage onNavigate={handleNavigate} />
-        )}
+          {activeView === 'about' && (
+            <AboutPage onNavigate={handleNavigate} />
+          )}
 
-        {activeView === 'privacy' && (
-          <PrivacyPage onNavigate={handleNavigate} />
-        )}
+          {activeView === 'privacy' && (
+            <PrivacyPage onNavigate={handleNavigate} />
+          )}
 
-        {activeView === 'terms' && (
-          <TermsPage onNavigate={handleNavigate} />
-        )}
+          {activeView === 'terms' && (
+            <TermsPage onNavigate={handleNavigate} />
+          )}
 
-        {activeView === 'contact' && (
-          <ContactPage onNavigate={handleNavigate} />
-        )}
+          {activeView === 'contact' && (
+            <ContactPage onNavigate={handleNavigate} />
+          )}
 
-        {/* Global SEO FAQ (rendered across non-editor views) */}
-        {activeView !== 'builder' && activeView !== 'about' && activeView !== 'privacy' && activeView !== 'terms' && activeView !== 'contact' && (
-          <FAQSection />
-        )}
-      </main>
+          {/* Global SEO FAQ (rendered across non-editor views) */}
+          {activeView !== 'builder' && activeView !== 'about' && activeView !== 'privacy' && activeView !== 'terms' && activeView !== 'contact' && (
+            <FAQSection />
+          )}
+        </main>
 
-      {/* Footer */}
-      <Footer
-        onOpenProKit={() => setIsProKitOpen(true)}
-        onNavigate={handleNavigate}
-      />
+        {/* Footer */}
+        <Footer
+          onOpenProKit={() => setIsProKitOpen(true)}
+          onNavigate={handleNavigate}
+        />
 
-      {/* Pro Kit Modal */}
-      <ProKitModal
-        isOpen={isProKitOpen}
-        onClose={() => setIsProKitOpen(false)}
-      />
+        {/* Pro Kit Modal */}
+        <ProKitModal
+          isOpen={isProKitOpen}
+          onClose={() => setIsProKitOpen(false)}
+        />
 
-      {/* Toast Notification */}
-      <Toast toast={toast} onDismiss={dismissToast} />
-    </div>
+        {/* Toast Notification */}
+        <Toast toast={toast} onDismiss={dismissToast} />
+      </div>
+
+      {/* Bulletproof Top-Level Dedicated Print Container */}
+      <div className="print-only" aria-hidden="true">
+        <div className="w-[210mm] min-h-[297mm] bg-white text-slate-900 mx-auto">
+          {invoiceData.template === 'minimalist' ? (
+            <MinimalistTemplate invoiceData={invoiceData} />
+          ) : invoiceData.template === 'classic' ? (
+            <ClassicAgencyTemplate invoiceData={invoiceData} />
+          ) : (
+            <ModernAccentTemplate invoiceData={invoiceData} />
+          )}
+        </div>
+      </div>
+    </>
   );
 };
 
